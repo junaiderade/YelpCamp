@@ -1,0 +1,25 @@
+body {
+    background-color: lightgray;
+}
+
+.thumbnail img {
+/*applies to all images inside thumbnails*/
+width: 100%;
+/*this makes images take up all the space*/
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+  padding: 9px;   
+}
+
+#deleteForm {
+    display: inline;
+}
+
+#deleteForm2 {
+    display: inline;
+}

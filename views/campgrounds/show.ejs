@@ -1,0 +1,94 @@
+<%include ../partials/header%>
+
+<!--CODE FOR THE SIDE BAR ON SHOW-->
+<!--------------------------------->
+<div class="container">
+    <div class="row">
+        
+         <div class="col-md-3">
+             <p class="lead">YelpCamp</p>
+             <div class="list-group">
+                 <li class="list-group-item active">Info 1</li>
+                 <li class="list-group-item">Info 2</li>
+                 <li class="list-group-item">Info 3</li>
+             </div>
+         </div>
+             
+             <div class="col-md-9">
+                 <!--This code is for the thumbnail with all the basic info-->
+                 <div class="thumbnail">
+                     <img class="img-responsive" src="<%=campground.image%>">
+                       <div class="caption-full">
+                         <h4 class="pull-right">$<%=campground.price%>/night</h4>
+                         <h4><a><%=campground.name%></a></h4>
+                         <p> <%=campground.description%></p>
+                         <p> <em>Submitted by: <%=campground.author.username%></em></p>
+                         <!--Below is for edit-->
+                         
+                         
+                         <% if(currentUser && campground.author.id.equals(currentUser._id)){ %> <!--if statement to hide buttons if user isnt authorized. means if there is a user logged in and authenticated-->
+                         <!--currentUser comes from app.js-->
+                         <a class = "btn btn-warning" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+                         
+                         <!--Below is for delete, which is styled to be in line-->
+                         <form id="deleteForm" action="/campgrounds/<%=campground._id%>/?_method=DELETE" method="POST">
+                          <button class="btn btn-danger">Delete</button>
+                         </form>
+                         <% } %>
+                         
+                       </div>
+                 </div>
+                 <!--This code will be for comments-->
+                 <div class="well">
+                     <!--the well gives u the ncie gray background and the border-->
+                     <div class="text-right">
+                         <!--anchor tag to create new comment -->
+                        <a class="btn btn-success" href="/campgrounds/<%=campground._id%>/comments/new">Add new comment</a>
+                     </div>
+            <hr>
+            <!--this is a horizontal rule and gives u a little divider-->
+                     <!--loop to display comments-->
+                     <%campground.comments.forEach(function(commentVar){ %>
+                     <div class="row">
+                         <div class="col-md-12">
+                          <strong> <%=commentVar.author.username%> </strong>
+                           <span class="pull-right">--</span>
+                           <p><%=commentVar.text%></p>
+                           
+                           
+                          <% if(currentUser && commentVar.author.id.equals(currentUser._id)){ %> <!--if statement to hide buttons if user isnt authorized. means if there is a user logged in and authenticated-->
+                           <!--edit button for comments-->
+                           <a class="btn btn-xs btn-warning" 
+                           href="/campgrounds/<%=campground._id%>/comments/<%=commentVar._id%>/edit">Edit
+                           </a>
+                           <!--form button for delete-->
+                           <form id="deleteForm2" action="/campgrounds/<%=campground._id%>/comments/<%=commentVar._id%>?_method=DELETE"
+                           method="POST"> 
+                           <input type="submit"  class="btn btn-xs btn-danger" value="Delete" > 
+                           </form>
+                           <% } %>
+                           
+                           
+                         </div>
+                     </div>
+                     <% })%>
+                 </div>
+                 
+                 
+                 
+             </div>
+             
+             
+             
+    </div>
+</div>
+
+<!--you rendered the campground variable in the app.js file-->
+
+
+
+
+
+
+
+<%include ../partials/footer%>

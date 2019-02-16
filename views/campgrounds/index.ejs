@@ -1,0 +1,37 @@
+<%include ../partials/header%>
+
+<div class="container">
+    
+    <!--u use this div here to contain everything and space it out normally-->
+<header class="jumbotron">
+  <div class="container">
+    <h1>Welcome to YelpCamp</h1>
+    <p>View my hand picked campgrounds from all over the USA</p>
+    <p> <a class="btn btn-primary btn-large" href="/campgrounds/new">Create a new campground  </a> </p>
+  </div>
+<!--u use a paragraph here to put the a tag on its own line-->
+</header>
+<!--the header works like a div but the name is diff that's all-->
+
+<div class="row text-center" style="display:flex; flex-wrap: wrap">
+    <!--to make image grid-->
+<% campgrounds.forEach(function(campground){ %>
+    <div class="col-md-3 col-sm-6">
+        <!--the diff cols r for resizing purposes-->
+        <div class="thumbnail">
+        <img src="<%=campground.image%>">
+          <div class="caption">
+              <h4> <%=campground.name %> </h4>
+          </div>
+          <p>
+            <a href="/campgrounds/<%= campground._id%>" class="btn btn-primary">More info</a>
+          </p>
+        </div>
+    <!--REMEMBER THE WAY U NEED QUOTES-->
+    </div>
+<% }); %>
+</div>
+
+</div>
+
+<%include ../partials/footer%>
