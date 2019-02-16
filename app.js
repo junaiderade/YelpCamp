@@ -22,8 +22,9 @@ var commentRoutes=require("./routes/comments"), //these are to import the routes
     campgroundRoutes = require("./routes/campgrounds"),
     authRoutes = require("./routes/index");
 
+//mongoose.connect('mongodb://localhost:27017/yelp_campv12', { useNewUrlParser: true }); //new syntax that came out after Colt's video
 
-mongoose.connect('mongodb://localhost:27017/yelp_campv12', { useNewUrlParser: true }); //new syntax that came out after Colt's video
+mongoose.connect("mongodb+srv://junaiderade:theStudent1998*@cluster0-cgoyr.mongodb.net/test?retryWrites=true"); //new syntax that came out after Colt's video
 //the above line makes a database calledkl yelp_camp
 //you chose not to use the set view engine in this
 app.use(bodyParser.urlencoded({extended: true})); //you need this everytime u use bodyparser
